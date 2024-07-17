@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class BrandListResponse : JsonResponse
+public class UserTypeResponse : JsonResponse
 {
-    public List<Brand> Brands { get; set; }
+    public UserType UserType { get; set; }
 
-
-    public static BrandListResponse Get()
+    public static UserTypeResponse Get(UserType b)
     {
-        BrandListResponse r = new BrandListResponse();
+        UserTypeResponse r = new UserTypeResponse();
         r.Status = 0;
-        r.Brands = Brand.Get();
+        r.UserType = b;
         return r;
     }
 }
+

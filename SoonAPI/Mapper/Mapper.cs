@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Data;
     internal class Mapper
     {
+
+    #region User Data
     // User data
-  
+
     /// <summary>
     /// Maps a data row to a User Object
     /// </summary>
@@ -19,6 +21,7 @@ using System.Data;
         b.Code = (int)r["user_code"];
         b.Email = (string)r["user_email"];
         b.Password = (string)r["user_password"];
+        b.UserType = (int)r["user_type"];
         return b;
     }
 
@@ -36,100 +39,139 @@ using System.Data;
         }
         return list;
     }
+    #endregion
 
+    #region Station Data
+    // Station data
 
-    // Brand Data
     /// <summary>
-    /// Maps a data row to a Brand Object
+    /// Maps a data row to a Station Object
     /// </summary>
     /// <param name="r"></param>
     /// <returns></returns>
-    public static Brand ToBrand(DataRow r)
-        {
-            Brand b = new Brand();
-            b.Id = (string)r["brand_id"];
-            b.Description = (string)r["brand_description"];
-            return b;
-        }
-
-    /// <summary>
-    /// Maps a data table to a Brand List
-    /// </summary>
-    /// <param name="table"></param>
-    /// <returns></returns>
-    public static List<Brand> ToBrandList(DataTable table)
+    public static Station ToStation(DataRow r)
     {
-        List<Brand> list = new List<Brand>();
-        foreach (DataRow dr in table.Rows)
-        {
-            list.Add(ToBrand(dr));
-        }
-        return list;
-    }
-
-
-    // Category Data
-    /// <summary>
-    /// Maps a data row to a Category Object
-    /// </summary>
-    /// <param name="r"></param>
-    /// <returns></returns>
-    public static Category ToCategory(DataRow r)
-    {
-        Category b = new Category();
-        b.Id = (string)r["category_id"];
-        b.Description = (string)r["category_description"];
+        Station b = new Station();
+        b.Code = (int)r["station_code"];
+        b.Name = (string)r["station_name"];
+        b.Location = (string)r["station_location"];
+        b.Status = (bool)r["station_status"];
         return b;
     }
 
     /// <summary>
-    /// Maps a data table to a Category List
+    /// Maps a data table to a Station List
     /// </summary>
     /// <param name="table"></param>
     /// <returns></returns>
-    public static List<Category> ToCategoryList(DataTable table)
+    public static List<Station> ToStationList(DataTable table)
     {
-        List<Category> list = new List<Category>();
+        List<Station> list = new List<Station>();
         foreach (DataRow dr in table.Rows)
         {
-            list.Add(ToCategory(dr));
+            list.Add(ToStation(dr));
         }
         return list;
-    }
+    }    
+    #endregion
 
+    #region Routes Data
+    // Routes data
 
-    // Products Data
     /// <summary>
-    /// Maps a data row to a Products Object
+    /// Maps a data row to a Routes Object
     /// </summary>
     /// <param name="r"></param>
     /// <returns></returns>
-    public static Product ToProduct(DataRow r)
+    public static Routes ToRoutes(DataRow r)
     {
-        Product b = new Product();
-        b.Id = (string)r["product_id"];
-        b.Description = (string)r["product_description"];
-        b.Brand = new Brand { Id = (string)r["product_brand"] };
-        b.Category = new Category { Id = (string)r["product_category"] };
-        b.Price = Convert.ToSingle(r["product_price"]);
-
+        Routes b = new Routes();
+        b.Code = (int)r["routes_code"];
+        b.Name = (string)r["routes_name"];
+        b.Status = (bool)r["routes_status"];
         return b;
     }
 
     /// <summary>
-    /// Maps a data table to a Product List
+    /// Maps a data table to a Routes List
     /// </summary>
     /// <param name="table"></param>
     /// <returns></returns>
-    public static List<Product> ToProductList(DataTable table)
+    public static List<Routes> ToRoutesList(DataTable table)
     {
-        List<Product> list = new List<Product>();
+        List<Routes> list = new List<Routes>();
         foreach (DataRow dr in table.Rows)
         {
-            list.Add(ToProduct(dr));
+            list.Add(ToRoutes(dr));
         }
         return list;
     }
+    #endregion
 
+    #region Bus Data
+    // Bus data
+
+    /// <summary>
+    /// Maps a data row to a Bus Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Bus ToBus(DataRow r)
+    {
+        Bus b = new Bus();
+        b.Code = (int)r["bus_code"];
+        b.Plates = (string)r["bus_plates"];
+        b.Capacity = (int)r["bus_capacity"];
+        b.Status = (bool)r["bus_status"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Bus List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Bus> ToBusList(DataTable table)
+    {
+        List<Bus> list = new List<Bus>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToBus(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region UserType Data
+    // Bus data
+
+    /// <summary>
+    /// Maps a data row to a UserType Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static UserType ToUserType(DataRow r)
+    {
+        UserType b = new UserType();
+        b.Code = (int)r["user_type_code"];
+        b.Description = (string)r["user_type_description"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a UserType List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<UserType> ToUserTypeList(DataTable table)
+    {
+        List<UserType> list = new List<UserType>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToUserType(dr));
+        }
+        return list;
+    }
+    #endregion
 }
 

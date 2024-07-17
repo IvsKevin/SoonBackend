@@ -7,26 +7,24 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class User
+public class UserType
 {
     #region statements
-    private static string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
+    private static string select = @"SELECT code AS user_type_code, 
+    description AS user_type_description FROM UserType ORDER BY user_type_code";
     private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
     private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 
     private int _code;
-    private string _email;
-    private string _password;
-    private int _user_tyoe;
+    private string _description;
+
     #endregion
 
     #region properties
     public int Code { get => _code; set => _code = value; }
-    public string Email { get => _email; set => _email = value; }
-    public string Password { get => _password; set => _password = value; }
-    public int UserType { get => _user_tyoe; set => _user_tyoe = value; }
+    public string Description { get => _description; set => _description = value; }
     #endregion
 
     #region constructors
@@ -34,12 +32,10 @@ public class User
     /// <summary>
     /// Creates an empty object
     /// </summary>
-    public User()
+    public UserType()
     {
         _code = 0;
-        _email = "";
-        _password = "";
-        _user_tyoe = 0;
+        _description = "";
     }
 
     /// <summary>
@@ -47,12 +43,10 @@ public class User
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public User(int code, string email, string password, int user_type)
+    public UserType(int code, string description)
     {
         _code = code;
-        _email = email;
-        _password = password;
-        _user_tyoe = user_type;
+        _description = description;
     }
 
     #endregion
@@ -79,15 +73,15 @@ public class User
 
     #region class methods
     /// <summary>
-    /// Return a list of all the users
+    /// Return a list of all the stations
     /// </summary>
     /// <returns></returns>
-    public static List<User> Get()
+    public static List<UserType> Get()
     {
         // Command
         SqlCommand command = new SqlCommand(select);
         // Execute query
-        return Mapper.ToUserList(SqlServerConnection.ExecuteQuery(command));
+        return Mapper.ToUserTypeList(SqlServerConnection.ExecuteQuery(command));
     }
     #endregion
 }

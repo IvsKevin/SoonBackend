@@ -7,26 +7,27 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class User
+public class Bus
 {
     #region statements
-    private static string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
+    private static string select = @"SELECT code AS bus_code, 
+    plates AS bus_plates, capacity AS bus_capacity, status AS bus_status FROM Bus ORDER BY bus_code";
     private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
     private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 
     private int _code;
-    private string _email;
-    private string _password;
-    private int _user_tyoe;
+    private string _plates;
+    private int _capacity;
+    private bool _status;
     #endregion
 
     #region properties
     public int Code { get => _code; set => _code = value; }
-    public string Email { get => _email; set => _email = value; }
-    public string Password { get => _password; set => _password = value; }
-    public int UserType { get => _user_tyoe; set => _user_tyoe = value; }
+    public string Plates { get => _plates; set => _plates = value; }
+    public int Capacity { get => _capacity; set => _capacity = value; }
+    public bool Status { get => _status; set => _status = value; }
     #endregion
 
     #region constructors
@@ -34,12 +35,12 @@ public class User
     /// <summary>
     /// Creates an empty object
     /// </summary>
-    public User()
+    public Bus()
     {
         _code = 0;
-        _email = "";
-        _password = "";
-        _user_tyoe = 0;
+        _plates = "";
+        _capacity = 0;
+        _status = true;
     }
 
     /// <summary>
@@ -47,12 +48,12 @@ public class User
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public User(int code, string email, string password, int user_type)
+    public Bus(int code, string plates, int capacity, bool status)
     {
         _code = code;
-        _email = email;
-        _password = password;
-        _user_tyoe = user_type;
+        _plates = plates;
+        _capacity = capacity;
+        _status = status;
     }
 
     #endregion
@@ -79,15 +80,15 @@ public class User
 
     #region class methods
     /// <summary>
-    /// Return a list of all the users
+    /// Return a list of all the stations
     /// </summary>
     /// <returns></returns>
-    public static List<User> Get()
+    public static List<Bus> Get()
     {
         // Command
         SqlCommand command = new SqlCommand(select);
         // Execute query
-        return Mapper.ToUserList(SqlServerConnection.ExecuteQuery(command));
+        return Mapper.ToBusList(SqlServerConnection.ExecuteQuery(command));
     }
     #endregion
 }

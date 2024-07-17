@@ -902,11 +902,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kevin\\source\\repos\\SoonAPI\\SoonAPI\\SoonAPI.csproj",
+      "projectUniqueName": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\SoonAPI.csproj",
       "projectName": "SoonAPI",
-      "projectPath": "C:\\Users\\kevin\\source\\repos\\SoonAPI\\SoonAPI\\SoonAPI.csproj",
+      "projectPath": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\SoonAPI.csproj",
       "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kevin\\source\\repos\\SoonAPI\\SoonAPI\\obj\\",
+      "outputPath": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

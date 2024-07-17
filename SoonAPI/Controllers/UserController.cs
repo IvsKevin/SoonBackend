@@ -23,7 +23,7 @@ namespace ConsoleAPI.Controllers
                 // Validate token
                 if (Security.ValidateToken(username, token))
                 {
-                    return Ok(BrandListResponse.Get());
+                    //return Ok(BrandListResponse.Get());
                 }
                 else
                 {

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class BrandResponse : JsonResponse
+public class StationResponse : JsonResponse
 {
-    public Brand Brand { get; set; }
+    public Station Station { get; set; }
 
-    public static BrandResponse Get(Brand b)
+    public static StationResponse Get(Station b)
     {
-        BrandResponse r = new BrandResponse();
+        StationResponse r = new StationResponse ();
         r.Status = 0;
-        r.Brand = b;
+        r.Station = b;
         return r;
     }
 }
