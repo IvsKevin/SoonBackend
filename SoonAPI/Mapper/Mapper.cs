@@ -173,5 +173,141 @@ using System.Data;
         return list;
     }
     #endregion
+
+    #region Driver Data
+    /// <summary>
+    /// Maps a data row to a Driver Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Driver ToDriver(DataRow r)
+    {
+        Driver b = new Driver();
+        b.Code = (int)r["driver_code"];
+        b.Name = (string)r["driver_name"];
+        b.Lastname = (string)r["driver_lastname"];
+        b.Lastname2 = (string)r["driver_lastname2"];
+        b.Phone = (string)r["driver_phone"];
+        b.Bus = (int)r["driver_bus"];
+        b.User = (int)r["driver_user"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Driver List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Driver> ToDriverList(DataTable table)
+    {
+        List<Driver> list = new List<Driver>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToDriver(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region Civil Data
+    /// <summary>
+    /// Maps a data row to a Civil Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Civil ToCivil(DataRow r)
+    {
+        Civil b = new Civil();
+        b.Code = (int)r["civil_code"];
+        b.Name = (string)r["civil_name"];
+        b.Lastname = (string)r["civil_lastname"];
+        b.Lastname2 = (string)r["civil_lastname2"];
+        b.Phone = (string)r["civil_phone"];
+        b.Birthday = (DateOnly)r["civil_birth"];
+        b.User = (int)r["civil_user"];
+        b.Card = (int)r["civil_card"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Civil List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Civil> ToCivilList(DataTable table)
+    {
+        List<Civil> list = new List<Civil>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToCivil(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region Transactions Data
+    /// <summary>
+    /// Maps a data row to a Transaction Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Transaction ToTransaction(DataRow r)
+    {
+        Transaction b = new Transaction();
+        b.Code = (int)r["trans_code"];
+        b.Type = (string)r["trans_type"];
+        b.Date = (DateTime)r["trans_date"];
+        b.Amount = (decimal)r["trans_amount"];
+        b.Card = (int)r["trans_card"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Transaction List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Transaction> ToTransactionList(DataTable table)
+    {
+        List<Transaction> list = new List<Transaction>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToTransaction(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region ArrivalInfo Data
+    /// <summary>
+    /// Maps a data row to a ArrivalInfo Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static ArrivalInfo ToArrivalInfo(DataRow r)
+    {
+        ArrivalInfo b = new ArrivalInfo();
+        b.Station = (int)r["arrival_station_code"];
+        b.Bus = (int)r["arrival_bus_code"];
+        b.DepartureTime = (DateTime)r["departureTime"];
+        b.ArrivalTime = (DateTime)r["arrivalTime"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a ArrivalInfo List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<ArrivalInfo> ToArrivalInfoList(DataTable table)
+    {
+        List<ArrivalInfo> list = new List<ArrivalInfo>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToArrivalInfo(dr));
+        }
+        return list;
+    }
+    #endregion
 }
 
