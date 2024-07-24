@@ -9,9 +9,9 @@ using System.Data.SqlClient;
 
 public class UserResponse : JsonResponse
 {
-        public User User { get; set; }
+        public Usuario User { get; set; }
 
-        public static UserResponse Get(User b)
+        public static UserResponse Get(Usuario b)
         {
             UserResponse r = new UserResponse();
             r.Status = 0;

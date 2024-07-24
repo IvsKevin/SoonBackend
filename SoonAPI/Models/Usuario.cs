@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class User
+public class Usuario
 {
     #region statements
     private static string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
     private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private static string add = "INSERT INTO [User] (code, email, password, UserType) VALUES (@ID, @MAIL, @PASS, @TYPE);";
     #endregion
 
     #region attributes 
@@ -34,7 +34,7 @@ public class User
     /// <summary>
     /// Creates an empty object
     /// </summary>
-    public User()
+    public Usuario()
     {
         _code = 0;
         _email = "";
@@ -47,7 +47,7 @@ public class User
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public User(int code, string email, string password, int user_type)
+    public Usuario(int code, string email, string password, int user_type)
     {
         _code = code;
         _email = email;
@@ -82,12 +82,59 @@ public class User
     /// Return a list of all the users
     /// </summary>
     /// <returns></returns>
-    public static List<User> Get()
+    public static List<Usuario> Get()
     {
         // Command
         SqlCommand command = new SqlCommand(select);
         // Execute query
         return Mapper.ToUserList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    /// <summary>
+    /// Returns the specified Usuario
+    /// </summary>
+    /// <param name="id">Usuario id</param>
+    /// <returns></returns>
+    public static Usuario Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        Usuario br = null;
+        foreach (Usuario b in Get())
+        {
+            if (b.Code == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Usuario", id);
+        }
+    }
+
+
+    public static bool Add(Usuario b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@ID", b.Code);
+        command.Parameters.AddWithValue("@MAIL", b.Email);
+        command.Parameters.AddWithValue("@PASS", b.Password);
+        command.Parameters.AddWithValue("@TYPE", b.UserType);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
     }
     #endregion
 }

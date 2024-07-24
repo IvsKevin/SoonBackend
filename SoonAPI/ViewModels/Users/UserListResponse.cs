@@ -9,14 +9,14 @@ using System.Data.SqlClient;
 
 public class UserListResponse : JsonResponse
 {
-    public List<User> Users { get; set; }
+    public List<Usuario> Users { get; set; }
 
 
     public static UserListResponse Get()
     {
         UserListResponse r = new UserListResponse();
         r.Status = 0;
-        r.Users = User.Get();
+        r.Users = Usuario.Get();
         return r;
     }
 }
