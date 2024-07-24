@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Exceptions
 {
-    internal class RecordNotFoundException : Exception
+    internal class ArgumentException2 : Exception
     {
         private string _message;
 
         public override string Message => _message;
 
-        public RecordNotFoundException(string table, string id)
+        public ArgumentException2(string msg)
         {
-            _message = "No se pudo encontrar en " + table + " el id " + id;
+            _message = msg;
         }
     }
 }
