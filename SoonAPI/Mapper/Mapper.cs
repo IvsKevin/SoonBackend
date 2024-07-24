@@ -15,9 +15,9 @@ using System.Data;
     /// </summary>
     /// <param name="r"></param>
     /// <returns></returns>
-    public static User ToUser(DataRow r)
+    public static Usuario ToUser(DataRow r)
     {
-        User b = new User();
+        Usuario b = new Usuario();
         b.Code = (int)r["user_code"];
         b.Email = (string)r["user_email"];
         b.Password = (string)r["user_password"];
@@ -30,9 +30,9 @@ using System.Data;
     /// </summary>
     /// <param name="table"></param>
     /// <returns></returns>
-    public static List<User> ToUserList(DataTable table)
+    public static List<Usuario> ToUserList(DataTable table)
     {
-        List<User> list = new List<User>();
+        List<Usuario> list = new List<Usuario>();
         foreach (DataRow dr in table.Rows)
         {
             list.Add(ToUser(dr));
@@ -305,6 +305,98 @@ using System.Data;
         foreach (DataRow dr in table.Rows)
         {
             list.Add(ToArrivalInfo(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region BusesDistribution Data
+    /// <summary>
+    /// Maps a data row to a BusesDistribution Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static BusesDistribution ToBusesDistribution(DataRow r)
+    {
+        BusesDistribution b = new BusesDistribution();
+        b.Routes = (int)r["distribution_route_code"];
+        b.Bus = (int)r["distribution_bus_code"];
+        b.Day = (DateOnly)r["distribution_day"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a BusesDistribution List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<BusesDistribution> ToBusesDistributionList(DataTable table)
+    {
+        List<BusesDistribution> list = new List<BusesDistribution>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToBusesDistribution(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region RouteStation
+    /// <summary>
+    /// Maps a data row to a RouteStation Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static RouteStation ToRouteStation(DataRow r)
+    {
+        RouteStation b = new RouteStation();
+        b.Route = (int)r["route_code"];
+        b.Station = (int)r["station_code"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a RouteStation List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<RouteStation> ToRouteStationList(DataTable table)
+    {
+        List<RouteStation> list = new List<RouteStation>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToRouteStation(dr));
+        }
+        return list;
+    }
+    #endregion
+
+    #region Calendar Data
+    /// <summary>
+    /// Maps a data row to a Calendar Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Calendar ToCalendar(DataRow r)
+    {
+        Calendar b = new Calendar();
+        b.Driver = (int)r["calendar_driver_code"];
+        b.Bus = (int)r["calendar_bus_code"];
+        b.Day = (DateOnly)r["calendar_day"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Calendar List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Calendar> ToCalendarList(DataTable table)
+    {
+        List<Calendar> list = new List<Calendar>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToCalendar(dr));
         }
         return list;
     }
