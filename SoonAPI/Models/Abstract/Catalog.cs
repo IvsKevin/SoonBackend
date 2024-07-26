@@ -8,15 +8,15 @@ public abstract class Catalog
 {
     #region attributes
 
-    protected string _id;
-    protected string _description;
+    protected string? _id;
+    protected string? _description;
 
     #endregion
 
     #region properties
 
-    public string Id { get => _id; set => _id = value; }
-    public string Description { get => _description; set => _description = value; }
+    public string? Id { get => _id; set => _id = value; }
+    public string? Description { get => _description; set => _description = value; }
 
     #endregion
 

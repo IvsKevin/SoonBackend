@@ -13,28 +13,7 @@ namespace ConsoleAPI.Controllers
 
             return Ok(RouteStationListResponse.Get());
 
-            // Receive security header
-            string username = Request.Headers["username"];
-            string token = Request.Headers["token"];
-
-            // Check if headers were received
-            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(token))
-            {
-                // Validate token
-                if (Security.ValidateToken(username, token))
-                {
-                    //return Ok(BrandListResponse.Get());
-                }
-                else
-                {
-                    return Ok(MessageResponse.Get(501, "Invalid token"));
-                }
-
-            }
-            else
-            {
-                return Ok(MessageResponse.Get(500, "Missing security Headers"));
-            }
+          
         }
     }
 }

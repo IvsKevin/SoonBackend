@@ -24,10 +24,10 @@ public class Civil
 
     #region attributes 
     private int _code;
-    private string _name;
-    private string _lastname;
-    private string _lastname2;
-    private string _phone;
+    private string? _name;
+    private string? _lastname;
+    private string? _lastname2;
+    private string? _phone;
     private DateOnly _birthday;
     private int _user;
     private int _card;
@@ -35,10 +35,10 @@ public class Civil
 
     #region properties
     public int Code { get => _code; set => _code = value; }
-    public string Name { get => _name; set => _name = value; }
-    public string Lastname { get => _lastname; set => _lastname = value; }
-    public string Lastname2 { get => _lastname2; set => _lastname2 = value; }
-    public string Phone { get => _phone; set => _phone = value; }
+    public string? Name { get => _name; set => _name = value; }
+    public string? Lastname { get => _lastname; set => _lastname = value; }
+    public string? Lastname2 { get => _lastname2; set => _lastname2 = value; }
+    public string? Phone { get => _phone; set => _phone = value; }
     public DateOnly Birthday { get => _birthday; set => _birthday = value; }
     public int User { get => _user; set => _user = value; }
     public int Card { get => _card; set => _card = value; }

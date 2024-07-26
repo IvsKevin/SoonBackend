@@ -17,7 +17,7 @@ internal class SqlServerConnection
             Integrated Security = true;
         ";
     // Connection
-    private static SqlConnection connection;
+    private static SqlConnection? connection;
     #endregion
 
     #region metthods
