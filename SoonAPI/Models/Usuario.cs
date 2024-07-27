@@ -103,7 +103,7 @@ public class Usuario
             throw new ArgumentException2("El id proporcionado no es un número válido.");
         }
 
-        Usuario br = null;
+        Usuario? br = null;
         foreach (Usuario b in Get())
         {
             if (b.Code == intId)
