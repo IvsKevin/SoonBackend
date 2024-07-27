@@ -10,10 +10,10 @@ using System.Data.SqlClient;
 public class BusesDistribution
 {
     #region statements
-    private static string select = @"SELECT route_code AS distribution_route_code, 
+    private const string select = @"SELECT route_code AS distribution_route_code, 
     bus_code AS distribution_bus_code, [day] AS distribution_day FROM BusesDistribution ORDER BY [day]";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

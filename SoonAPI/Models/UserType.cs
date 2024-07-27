@@ -10,10 +10,10 @@ using System.Data.SqlClient;
 public class UserType
 {
     #region statements
-    private static string select = @"SELECT code AS user_type_code, 
+    private const string select = @"SELECT code AS user_type_code, 
     description AS user_type_description FROM UserType ORDER BY user_type_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

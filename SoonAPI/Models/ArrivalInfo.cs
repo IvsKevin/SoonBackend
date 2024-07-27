@@ -14,13 +14,13 @@ using static System.Collections.Specialized.BitVector32;
 public class ArrivalInfo
 {
     #region statements
-    private static string select = @"
+    private const string select = @"
     SELECT station_code AS arrival_station_code, bus_code AS arrival_bus_code, 
     departureTime, arrivalTime
     FROM ArrivalInfo 
     ORDER BY arrival_bus_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

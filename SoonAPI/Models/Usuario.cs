@@ -10,9 +10,9 @@ using System.Data.SqlClient;
 public class Usuario
 {
     #region statements
-    private static string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO [User] (code, email, password, UserType) VALUES (@ID, @MAIL, @PASS, @TYPE);";
+    private const string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    private const string add = "INSERT INTO [User] (code, email, password, UserType) VALUES (@ID, @MAIL, @PASS, @TYPE);";
     #endregion
 
     #region attributes 

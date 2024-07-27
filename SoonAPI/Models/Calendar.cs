@@ -15,13 +15,13 @@ using Microsoft.AspNetCore.Routing;
 public class Calendar
 {
     #region statements
-    private static string select = @"
+    private const string select = @"
     SELECT driver_code AS calendar_driver_code, bus_code AS calendar_bus_code,
     [day] AS calendar_day
     FROM Calendar 
     ORDER BY [day]";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

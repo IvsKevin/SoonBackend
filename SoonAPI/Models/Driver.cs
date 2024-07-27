@@ -12,13 +12,13 @@ using System.Xml.Linq;
 public class Driver
 {
     #region statements
-    private static string select = @"
+    private const string select = @"
     SELECT code AS driver_code, name AS driver_name, lastName AS driver_lastname, lastName2 AS driver_lastname2,
     phoneNUmber AS driver_phone, assignedBus AS driver_bus, [user] AS driver_user
     FROM Driver 
     ORDER BY driver_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

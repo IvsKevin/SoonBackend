@@ -10,9 +10,9 @@ using System.Data.SqlClient;
 public class Station
 {
     #region statements
-    private static string select = "SELECT code AS station_code, name AS station_name, location AS station_location, status AS station_status FROM Stations ORDER BY station_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string select = "SELECT code AS station_code, name AS station_name, location AS station_location, status AS station_status FROM Stations ORDER BY station_code";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 

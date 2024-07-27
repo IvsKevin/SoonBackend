@@ -13,13 +13,13 @@ using System.ComponentModel.DataAnnotations;
 public class Transaction
 {
     #region statements
-    private static string select = @"
+    private const string select = @"
     SELECT code AS trans_code, transactionType AS trans_tyoe, transactionDate AS trans_date, amount AS trans_amount,
     card AS trans_card
     FROM Transactions 
     ORDER BY trans_code";
-    private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
+    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
     #endregion
 
     #region attributes 
