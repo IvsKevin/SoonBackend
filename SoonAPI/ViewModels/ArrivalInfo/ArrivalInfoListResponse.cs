@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class ArrivalInfoListResponse : JsonResponse
 {
-    public List<ArrivalInfo> ArrivalInfos { get; set; }
+    public List<ArrivalInfo>? ArrivalInfos { get; set; }
 
 
     public static ArrivalInfoListResponse Get()

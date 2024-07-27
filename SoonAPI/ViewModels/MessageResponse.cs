@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class MessageResponse : JsonResponse
     {
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         public static MessageResponse Get(int status, string message)
         {

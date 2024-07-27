@@ -22,30 +22,6 @@ using Microsoft.AspNetCore.Mvc;
         {
             Usuario b = Usuario.Get(id);
             return Ok(UserResponse.Get(b));
-
-            // Receive security header
-            string username = Request.Headers["username"];
-            string token = Request.Headers["token"];
-
-            // Check if headers were received
-            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(token))
-            {
-                // Validate token
-                if (Security.ValidateToken(username, token))
-                {
-                    //Areas b = Areas.Get(id);
-                    //return Ok(AreasResponse.Get(b));
-                }
-                else
-                {
-                    return Ok(MessageResponse.Get(501, "Invalid token"));
-                }
-            }
-            else
-            {
-                return Ok(MessageResponse.Get(500, "Missing security Headers"));
-            }
-
         }
         catch (RecordNotFoundException e)
         {

@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class CalendarResponse : JsonResponse
 {
-    public Calendar Calendar { get; set; }
+    public Calendar? Calendar { get; set; }
 
     public static CalendarResponse Get(Calendar b)
     {

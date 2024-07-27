@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class CivilResponse : JsonResponse
 {
-    public Civil Civil { get; set; }
+    public Civil? Civil { get; set; }
 
     public static CivilResponse Get(Civil b)
     {

@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class DriverListResponse : JsonResponse
 {
-    public List<Driver> Drivers { get; set; }
+    public List<Driver>? Drivers { get; set; }
 
 
     public static DriverListResponse Get()

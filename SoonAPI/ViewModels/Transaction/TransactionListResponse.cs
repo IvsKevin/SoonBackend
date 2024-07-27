@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class TransactionListResponse : JsonResponse
 {
-    public List<Transaction> Transactions { get; set; }
+    public List<Transaction>? Transactions { get; set; }
 
 
     public static TransactionListResponse Get()

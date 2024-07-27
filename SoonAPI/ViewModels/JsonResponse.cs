@@ -9,6 +9,6 @@ using System.Data.SqlClient;
 
 public class JsonResponse
     {
-        public int Status {  get; set; }
+        public int? Status {  get; set; }
     }
 

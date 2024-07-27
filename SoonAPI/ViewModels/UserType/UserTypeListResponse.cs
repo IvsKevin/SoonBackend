@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class UserTypeListResponse : JsonResponse
 {
-    public List<UserType> UserTypes { get; set; }
+    public List<UserType>? UserTypes { get; set; }
 
 
     public static UserTypeListResponse Get()

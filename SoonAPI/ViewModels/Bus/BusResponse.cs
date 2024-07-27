@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class BusResponse : JsonResponse
 {
-    public Bus Bus { get; set; }
+    public Bus? Bus { get; set; }
 
     public static BusResponse Get(Bus b)
     {

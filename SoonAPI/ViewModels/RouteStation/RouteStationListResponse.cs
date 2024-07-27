@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public class RouteStationListResponse : JsonResponse
 {
-    public List<RouteStation> RouteStations { get; set; }
+    public List<RouteStation>? RouteStations { get; set; }
 
 
     public static RouteStationListResponse Get()
