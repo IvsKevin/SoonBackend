@@ -1,0 +1,17 @@
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\SoonAPI.exe
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\appsettings.Development.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\appsettings.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\SoonAPI.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\SoonAPI.deps.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\SoonAPI.runtimeconfig.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\SoonAPI.pdb
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\Microsoft.OpenApi.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\System.Data.SqlClient.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\runtimes\win-arm64\native\sni.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\runtimes\win-x64\native\sni.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\runtimes\win-x86\native\sni.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\publish\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
