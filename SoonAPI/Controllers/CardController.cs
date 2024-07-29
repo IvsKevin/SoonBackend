@@ -2,16 +2,15 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ConsoleAPI.Controllers
-{
+
     [Route("api/[controller]")]
     [ApiController]
-    public class UserTypeController : ControllerBase
+    public class CardController : ControllerBase
     {
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(UserTypeListResponse.Get());
+            return Ok(CardListResponse.Get());
         }
 
         [HttpGet]
@@ -20,8 +19,8 @@ namespace ConsoleAPI.Controllers
         {
             try
             {
-                UserType b = UserType.Get(id);
-                return Ok(UserTypeResponse.Get(b));
+                Card b = Card.Get(id);
+                return Ok(CardResponse.Get(b));
             }
             catch (RecordNotFoundException e)
             {
@@ -30,19 +29,19 @@ namespace ConsoleAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromForm] PostUserType p)
+        public ActionResult Post([FromForm] PostCard p)
         {
             // Check if data was posted
             if (p.Code.HasValue &&
-                !String.IsNullOrEmpty(p.Description))
+                p.Balance.HasValue)
             {
-                if (UserType.Add(new UserType(p.Code.Value, p.Description)))
-                    return Ok(MessageResponse.Get(0, "Tipo de Usuario registrado correctamente"));
+                if (Card.Add(new Card(p.Code.Value, p.Balance.Value)))
+                    return Ok(MessageResponse.Get(0, "La cuenta se ha registrado correctamente"));
                 else
-                    return Ok(MessageResponse.Get(2, "No se pudo registrar al tipo de usuario"));
+                    return Ok(MessageResponse.Get(2, "No se pudo registrar la cuenta"));
             }
             else
                 return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
         }
     }
-}
+
