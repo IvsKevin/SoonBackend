@@ -7,89 +7,63 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-public class UserType
+public class Card
 {
     #region statements
-    private const string select = @"SELECT code AS user_type_code, 
-    description AS user_type_description FROM UserType ORDER BY user_type_code";
+    private const string select = @"SELECT code AS card_code, 
+    balance AS card_balance FROM Card ORDER BY card_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private const string add = "INSERT INTO UserType (id, description) VALUES (@ID, @DESC);";
+    private const string add = "INSERT INTO Card (code, balance) VALUES (@ID, @BALANCE);";
     #endregion
 
     #region attributes 
     private int _code;
-    private string _description;
-
+    private decimal _balance;
     #endregion
 
     #region properties
     public int Code { get => _code; set => _code = value; }
-    public string Description { get => _description; set => _description = value; }
+    public decimal Balance { get => _balance; set => _balance = value; }
     #endregion
 
     #region constructors
-
-    /// <summary>
-    /// Creates an empty object
-    /// </summary>
-    public UserType()
+    public Card()
     {
         _code = 0;
-        _description = "";
+        _balance = 0;
     }
 
-    /// <summary>
-    /// Creates an object with values from the arguments
-    /// </summary>
-    /// <param name="id">Brand id</param>
-    /// <param name="description">Brand description</param>
-    public UserType(int code, string description)
+    public Card(int code, decimal balance)
     {
         _code = code;
-        _description = description;
+        _balance = balance;
     }
 
     #endregion
 
     #region instance methods
 
-    /// <summary>
-    /// Add a new user
-    /// </summary>
-    /// <returns></returns>
-    public bool Add()
-    {
-        //Add(this);
-        return true;
-    }
-
-    public bool Delete()
-    {
-        //Remove(this);
-        return true;
-    }
-
     #endregion
 
     #region class methods
     /// <summary>
-    /// Return a list of all the stations
+    /// Return a list of all the Cards
     /// </summary>
     /// <returns></returns>
-    public static List<UserType> Get()
+    public static List<Card> Get()
     {
         // Command
         SqlCommand command = new SqlCommand(select);
         // Execute query
-        return Mapper.ToUserTypeList(SqlServerConnection.ExecuteQuery(command));
+        return Mapper.ToCardList(SqlServerConnection.ExecuteQuery(command));
     }
 
     /// <summary>
-    /// Returns the specified UserType
+    /// Returns the specified Card
     /// </summary>
     /// <param name="id">UserType id</param>
     /// <returns></returns>
-    public static UserType Get(string id)
+    public static Card Get(string id)
     {
         // Convertir id a entero
         if (!int.TryParse(id, out int intId))
@@ -97,8 +71,8 @@ public class UserType
             throw new ArgumentException2("El id proporcionado no es un número válido.");
         }
 
-        UserType? br = null;
-        foreach (UserType b in Get())
+        Card? br = null;
+        foreach (Card b in Get())
         {
             if (b.Code == intId)
             {
@@ -113,28 +87,20 @@ public class UserType
         }
         else
         {
-            throw new RecordNotFoundException("UserType", id);
+            throw new RecordNotFoundException("Card", id);
         }
     }
 
 
-    public static bool Add(UserType b)
+    public static bool Add(Card b)
     {
-        try
-        {
             // Command
             SqlCommand command = new SqlCommand(add);
             // Parameters
             command.Parameters.AddWithValue("@ID", b.Code);
-            command.Parameters.AddWithValue("@DESC", b.Description);
+            command.Parameters.AddWithValue("@BALANCE", b.Balance);
             // Execute command
             return SqlServerConnection.ExecuteNonQuery(command);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error adding usertype: " + ex.Message);
-            return false;
-        }
     }
     #endregion
 }

@@ -14,12 +14,14 @@ public class Transaction
 {
     #region statements
     private const string select = @"
-    SELECT code AS trans_code, transactionType AS trans_tyoe, transactionDate AS trans_date, amount AS trans_amount,
+    SELECT code AS trans_code, transactionType AS trans_type, transactionDate AS trans_date, amount AS trans_amount,
     card AS trans_card
     FROM Transactions 
     ORDER BY trans_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = @"INSERT INTO Transactions 
+    (code, transactionType, transactionDate, amount, card) 
+    VALUES (@ID, @TYPE, @DATE, @AMOUNT, @CARD);";
     #endregion
 
     #region attributes 
@@ -99,6 +101,53 @@ public class Transaction
         SqlCommand command = new SqlCommand(select);
         // Execute query
         return Mapper.ToTransactionList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    /// <summary>
+    /// Returns the specified Transaction
+    /// </summary>
+    /// <param name="id">Transaction id</param>
+    /// <returns></returns>
+    public static Transaction Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        Transaction? br = null;
+        foreach (Transaction b in Get())
+        {
+            if (b.Code == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Transaction", id);
+        }
+    }
+
+    public static bool Add(Transaction b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@ID", b.Code);
+        command.Parameters.AddWithValue("@TYPE", b.Type);
+        command.Parameters.AddWithValue("@DATE", b.Date);
+        command.Parameters.AddWithValue("@AMOUNT", b.Amount);
+        command.Parameters.AddWithValue("@CARD", b.Card);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
     }
     #endregion
 }
