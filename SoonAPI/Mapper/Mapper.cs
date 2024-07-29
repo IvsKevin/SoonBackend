@@ -142,6 +142,38 @@ using System.Data;
     }
     #endregion
 
+    #region Card Data
+    // Card data
+
+    /// <summary>
+    /// Maps a data row to a Card Object
+    /// </summary>
+    /// <param name="r"></param>
+    /// <returns></returns>
+    public static Card ToCard(DataRow r)
+    {
+        Card b = new Card();
+        b.Code = (int)r["card_code"];
+        b.Balance = (decimal)r["card_balance"];
+        return b;
+    }
+
+    /// <summary>
+    /// Maps a data table to a Card List
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
+    public static List<Card> ToCardList(DataTable table)
+    {
+        List<Card> list = new List<Card>();
+        foreach (DataRow dr in table.Rows)
+        {
+            list.Add(ToCard(dr));
+        }
+        return list;
+    }
+    #endregion
+
     #region UserType Data
     // Bus data
 
