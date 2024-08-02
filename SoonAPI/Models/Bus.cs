@@ -13,7 +13,7 @@ public class Bus
     private const string select = @"SELECT code AS bus_code, 
     plates AS bus_plates, capacity AS bus_capacity, status AS bus_status FROM Bus ORDER BY bus_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = "INSERT INTO Bus (plates, capacity, status) VALUES (@PLATES, @CAP, @STATUS);";
     #endregion
 
     #region attributes 
@@ -48,9 +48,8 @@ public class Bus
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public Bus(int code, string plates, int capacity, bool status)
+    public Bus(string plates, int capacity, bool status)
     {
-        _code = code;
         _plates = plates;
         _capacity = capacity;
         _status = status;
@@ -89,6 +88,47 @@ public class Bus
         SqlCommand command = new SqlCommand(select);
         // Execute query
         return Mapper.ToBusList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    public static Bus Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        Bus? br = null;
+        foreach (Bus b in Get())
+        {
+            if (b.Code == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Bus", id);
+        }
+    }
+
+
+    public static bool Add(Bus b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@PLATES", b.Plates);
+        command.Parameters.AddWithValue("@CAP", b.Capacity);
+        command.Parameters.AddWithValue("@STATUS", b.Status);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
     }
     #endregion
 }

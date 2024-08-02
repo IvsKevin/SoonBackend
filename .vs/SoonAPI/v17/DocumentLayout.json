@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|c:\\users\\kevin\\documents\\trabajosutt\\soonapi\\soonapi\\viewmodels\\usertype\\usertypelistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|solutionrelative:soonapi\\viewmodels\\usertype\\usertypelistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|c:\\users\\kevin\\documents\\trabajosutt\\soonapi\\soonapi\\dataaccess\\sqlserverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|solutionrelative:soonapi\\dataaccess\\sqlserverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|c:\\users\\kevin\\documents\\trabajosutt\\soonapi\\soonapi\\viewmodels\\usertype\\usertyperesponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|solutionrelative:soonapi\\viewmodels\\usertype\\usertyperesponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|c:\\users\\kevin\\documents\\trabajosutt\\soonapi\\soonapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|solutionrelative:soonapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|c:\\users\\kevin\\documents\\trabajosutt\\soonapi\\soonapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CD7811D-0ACE-496A-9391-5442484DB74F}|SoonAPI\\SoonAPI.csproj|solutionrelative:soonapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 289,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,29 +30,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserTypeListResponse.cs",
-              "DocumentMoniker": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\ViewModels\\UserType\\UserTypeListResponse.cs",
-              "RelativeDocumentMoniker": "SoonAPI\\ViewModels\\UserType\\UserTypeListResponse.cs",
-              "ToolTip": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\ViewModels\\UserType\\UserTypeListResponse.cs",
-              "RelativeToolTip": "SoonAPI\\ViewModels\\UserType\\UserTypeListResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAlAAAA",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\Program.cs",
+              "RelativeDocumentMoniker": "SoonAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\Program.cs",
+              "RelativeToolTip": "SoonAPI\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABwAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T17:37:46.517Z",
+              "WhenOpened": "2024-08-02T16:12:16.351Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserTypeResponse.cs",
-              "DocumentMoniker": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\ViewModels\\UserType\\UserTypeResponse.cs",
-              "RelativeDocumentMoniker": "SoonAPI\\ViewModels\\UserType\\UserTypeResponse.cs",
-              "ToolTip": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\ViewModels\\UserType\\UserTypeResponse.cs",
-              "RelativeToolTip": "SoonAPI\\ViewModels\\UserType\\UserTypeResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAARAAAA",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SoonAPI\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SoonAPI\\Controllers\\UserController.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAQwDUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T17:37:36.157Z",
+              "WhenOpened": "2024-08-02T14:52:40.398Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SqlServerConnection.cs",
+              "DocumentMoniker": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\DataAccess\\SqlServerConnection.cs",
+              "RelativeDocumentMoniker": "SoonAPI\\DataAccess\\SqlServerConnection.cs",
+              "ToolTip": "C:\\Users\\kevin\\Documents\\TrabajosUTT\\SoonAPI\\SoonAPI\\DataAccess\\SqlServerConnection.cs",
+              "RelativeToolTip": "SoonAPI\\DataAccess\\SqlServerConnection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJ0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T18:39:24.696Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 111,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

@@ -13,7 +13,7 @@ public class UserType
     private const string select = @"SELECT code AS user_type_code, 
     description AS user_type_description FROM UserType ORDER BY user_type_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private const string add = "INSERT INTO UserType (id, description) VALUES (@ID, @DESC);";
+    private const string add = "INSERT INTO UserType (description) VALUES (@DESC);";
     #endregion
 
     #region attributes 
@@ -43,9 +43,8 @@ public class UserType
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public UserType(int code, string description)
+    public UserType(string description)
     {
-        _code = code;
         _description = description;
     }
 
@@ -125,7 +124,6 @@ public class UserType
             // Command
             SqlCommand command = new SqlCommand(add);
             // Parameters
-            command.Parameters.AddWithValue("@ID", b.Code);
             command.Parameters.AddWithValue("@DESC", b.Description);
             // Execute command
             return SqlServerConnection.ExecuteNonQuery(command);

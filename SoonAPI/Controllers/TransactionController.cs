@@ -30,14 +30,13 @@ public class TransactionController : ControllerBase
     [HttpPost]
     public ActionResult Post([FromForm] PostTransaction p)
     {
+            DateTime Date = DateTime.Now; 
         // Check if data was posted
-        if (p.Code.HasValue &&
-            !String.IsNullOrEmpty(p.Type) &&
-            p.Date.HasValue &&
+        if (!String.IsNullOrEmpty(p.Type) &&
             p.Amount.HasValue &&
             p.Card.HasValue)
         {
-            if (Transaction.Add(new Transaction(p.Code.Value, p.Type, p.Date.Value, p.Amount.Value, p.Card.Value)))
+            if (Transaction.Add(new Transaction(p.Type, Date, p.Amount.Value, p.Card.Value)))
                 return Ok(MessageResponse.Get(0, "Transaccion registrado correctamente"));
             else
                 return Ok(MessageResponse.Get(2, "No se pudo completar la transaccion."));

@@ -32,10 +32,9 @@ using Microsoft.AspNetCore.Mvc;
         public ActionResult Post([FromForm] PostCard p)
         {
             // Check if data was posted
-            if (p.Code.HasValue &&
-                p.Balance.HasValue)
+            if (p.Balance.HasValue)
             {
-                if (Card.Add(new Card(p.Code.Value, p.Balance.Value)))
+                if (Card.Add(new Card(p.Balance.Value)))
                     return Ok(MessageResponse.Get(0, "La cuenta se ha registrado correctamente"));
                 else
                     return Ok(MessageResponse.Get(2, "No se pudo registrar la cuenta"));

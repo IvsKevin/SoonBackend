@@ -18,7 +18,9 @@ public class Driver
     FROM Driver 
     ORDER BY driver_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = @"INSERT INTO Driver 
+    (name, lastName, lastName2, phoneNumber, assignedBus, [user]) 
+    VALUES (@NAME, @LAST, @LAST2, @NUMBER, @BUS, @USER);";
     #endregion
 
     #region attributes 
@@ -64,9 +66,8 @@ public class Driver
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
 
-    public Driver(int code, string name, string lastname, string lastname2, string phone, int bus, int user)
+    public Driver(string name, string lastname, string lastname2, string phone, int bus, int user)
     {
-        _code = code;
         _name = name;
         _lastname = lastname;
         _lastname2 = lastname2;
@@ -109,6 +110,50 @@ public class Driver
         // Execute query
         return Mapper.ToDriverList(SqlServerConnection.ExecuteQuery(command));
     }
+
+    public static Driver Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        Driver? br = null;
+        foreach (Driver b in Get())
+        {
+            if (b.Code == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Driver", id);
+        }
+    }
+
+    public static bool Add(Driver b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@NAME", b.Name);
+        command.Parameters.AddWithValue("@LAST", b.Lastname);
+        command.Parameters.AddWithValue("@LAST2", b.Lastname2);
+        command.Parameters.AddWithValue("@NUMBER", b.Phone);
+        command.Parameters.AddWithValue("@BUS", b.Bus);
+        command.Parameters.AddWithValue("@USER", b.User);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
     #endregion
 }
 

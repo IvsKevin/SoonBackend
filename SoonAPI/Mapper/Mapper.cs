@@ -255,7 +255,7 @@ using System.Data;
         b.Lastname = (string)r["civil_lastname"];
         b.Lastname2 = (string)r["civil_lastname2"];
         b.Phone = (string)r["civil_phone"];
-        b.Birthday = (DateOnly)r["civil_birth"];
+        b.Birthday = (DateTime)r["civil_birth"];
         b.User = (int)r["civil_user"];
         b.Card = (int)r["civil_card"];
         return b;

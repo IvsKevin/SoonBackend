@@ -20,8 +20,8 @@ public class Transaction
     ORDER BY trans_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
     private const string add = @"INSERT INTO Transactions 
-    (code, transactionType, transactionDate, amount, card) 
-    VALUES (@ID, @TYPE, @DATE, @AMOUNT, @CARD);";
+    (transactionType, transactionDate, amount, card) 
+    VALUES  (@TYPE, @DATE, @AMOUNT, @CARD);";
     #endregion
 
     #region attributes 
@@ -59,9 +59,8 @@ public class Transaction
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public Transaction(int code, string type, DateTime date, decimal amount, int card)
+    public Transaction(string type, DateTime date, decimal amount, int card)
     {
-        _code = code;
         _type = type;
         _date = date;
         _amount = amount;
@@ -141,7 +140,6 @@ public class Transaction
         // Command
         SqlCommand command = new SqlCommand(add);
         // Parameters
-        command.Parameters.AddWithValue("@ID", b.Code);
         command.Parameters.AddWithValue("@TYPE", b.Type);
         command.Parameters.AddWithValue("@DATE", b.Date);
         command.Parameters.AddWithValue("@AMOUNT", b.Amount);

@@ -13,7 +13,7 @@ public class Card
     private const string select = @"SELECT code AS card_code, 
     balance AS card_balance FROM Card ORDER BY card_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private const string add = "INSERT INTO Card (code, balance) VALUES (@ID, @BALANCE);";
+    private const string add = "INSERT INTO Card (balance) VALUES (@BALANCE);";
     #endregion
 
     #region attributes 
@@ -33,9 +33,8 @@ public class Card
         _balance = 0;
     }
 
-    public Card(int code, decimal balance)
+    public Card(decimal balance)
     {
-        _code = code;
         _balance = balance;
     }
 
@@ -97,7 +96,6 @@ public class Card
             // Command
             SqlCommand command = new SqlCommand(add);
             // Parameters
-            command.Parameters.AddWithValue("@ID", b.Code);
             command.Parameters.AddWithValue("@BALANCE", b.Balance);
             // Execute command
             return SqlServerConnection.ExecuteNonQuery(command);

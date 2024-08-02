@@ -20,7 +20,9 @@ public class ArrivalInfo
     FROM ArrivalInfo 
     ORDER BY arrival_bus_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = @"INSERT INTO ArrivalInfo 
+    (station_code, bus_code, departureTime, arrivalTime) 
+    VALUES (@STATION, @BUS, @DEPARTURE, @ARRIVAL);";
     #endregion
 
     #region attributes 
@@ -95,6 +97,48 @@ public class ArrivalInfo
         SqlCommand command = new SqlCommand(select);
         // Execute query
         return Mapper.ToArrivalInfoList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    public static ArrivalInfo Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        ArrivalInfo? br = null;
+        foreach (ArrivalInfo b in Get())
+        {
+            if (b.Station == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("ArrivalInfo", id);
+        }
+    }
+
+
+    public static bool Add(ArrivalInfo b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@STATION", b.Station);
+        command.Parameters.AddWithValue("@BUS", b.Bus);
+        command.Parameters.AddWithValue("@DEPARTURE", b.DepartureTime);
+        command.Parameters.AddWithValue("@ARRIVAL", b.ArrivalTime);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
     }
     #endregion
 }

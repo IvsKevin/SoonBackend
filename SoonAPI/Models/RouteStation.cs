@@ -20,7 +20,7 @@ public class RouteStation
     FROM RouteStations 
     ORDER BY route_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = "INSERT INTO RouteStations (route_code, station_code) VALUES (@ROUTE, @STATION);";
     #endregion
 
     #region attributes 
@@ -84,6 +84,45 @@ public class RouteStation
         SqlCommand command = new SqlCommand(select);
         // Execute query
         return Mapper.ToRouteStationList(SqlServerConnection.ExecuteQuery(command));
+    }
+
+    public static RouteStation Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        RouteStation? br = null;
+        foreach (RouteStation b in Get())
+        {
+            if (b.Route == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Station", id);
+        }
+    }
+
+    public static bool Add(RouteStation b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@ROUTE", b.Route);
+        command.Parameters.AddWithValue("@STATION", b.Station);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
     }
     #endregion
 }

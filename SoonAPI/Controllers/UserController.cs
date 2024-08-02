@@ -30,15 +30,41 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
+    [Route("login")]
+    public ActionResult Login([FromForm] string email, [FromForm] string password)
+    {
+        // Check if data was posted
+        if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+        {
+            // Validate credentials
+            Usuario? user = Usuario.ValidateCredentials(email, password);
+            if (user != null)
+            {
+                // You can create a session token here or any other logic for successful login
+                return Ok(UserResponse.Get(user));
+            }
+            else
+            {
+                return Ok(MessageResponse.Get(1, "No se ha encontrado al usuario"));
+            }
+        }
+        else
+        {
+            return Ok(MessageResponse.Get(2, "Datos del formulario incompletos"));
+        }
+    }
+
+
+    [HttpPost]
     public ActionResult Post([FromForm] PostUser p)
     {
         // Check if data was posted
-        if (p.code.HasValue &&
-            !String.IsNullOrEmpty(p.email) &&
-            !String.IsNullOrEmpty(p.password) &&
-            p.type.HasValue)
+        if (
+            !String.IsNullOrEmpty(p.Email) &&
+            !String.IsNullOrEmpty(p.Password) &&
+            p.Type.HasValue)
         {
-            if (Usuario.Add(new Usuario(p.code.Value, p.email, p.password, p.type.Value)))
+            if (Usuario.Add(new Usuario(p.Email, p.Password, p.Type.Value)))
                 return Ok(MessageResponse.Get(0, "Usuario registrado correctamente"));
             else
                 return Ok(MessageResponse.Get(2, "No se pudo registrar al usuario"));

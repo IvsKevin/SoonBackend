@@ -13,7 +13,7 @@ public class Routes
     private const string select = @"SELECT code AS routes_code, 
     name AS routes_name, status AS routes_status FROM Routes ORDER BY routes_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    //private static string add = "INSERT INTO brands (id, description) VALUES (@ID, @DESC);";
+    private const string add = "INSERT INTO Routes (name, status) VALUES (@NAME, @STATUS);";
     #endregion
 
     #region attributes 
@@ -45,9 +45,8 @@ public class Routes
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public Routes(int code, string name, bool status)
+    public Routes(string name, bool status)
     {
-        _code = code;
         _name = name;
         _status = status;
     }
@@ -86,6 +85,46 @@ public class Routes
         // Execute query
         return Mapper.ToRoutesList(SqlServerConnection.ExecuteQuery(command));
     }
+
+    public static Routes Get(string id)
+    {
+        // Convertir id a entero
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        Routes? br = null;
+        foreach (Routes b in Get())
+        {
+            if (b.Code == intId)
+            {
+                br = b;
+                break;
+            }
+        }
+
+        if (br != null)
+        {
+            return br;
+        }
+        else
+        {
+            throw new RecordNotFoundException("Routes", id);
+        }
+    }
+
+    public static bool Add(Routes b)
+    {
+        // Command
+        SqlCommand command = new SqlCommand(add);
+        // Parameters
+        command.Parameters.AddWithValue("@NAME", b.Name);
+        command.Parameters.AddWithValue("@STATUS", b.Status);
+        // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
     #endregion
 }
 

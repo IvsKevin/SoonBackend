@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoonAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c63b289f790ec46e82f47492930cb4a4bcd212c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04e54c54e96da8c49b22ed683307eb5dad7c1187")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoonAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoonAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

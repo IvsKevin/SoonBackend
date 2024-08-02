@@ -11,8 +11,10 @@ public class Usuario
 {
     #region statements
     private const string select = "SELECT code AS user_code, email AS user_email, password AS user_password, UserType AS user_type FROM [User] ORDER BY user_code";
-    //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private const string add = "INSERT INTO [User] (code, email, password, UserType) VALUES (@ID, @MAIL, @PASS, @TYPE);";
+    private const string validateCredentials = @"SELECT 
+    code AS user_code, email AS user_email, password AS user_password, UserType AS user_type 
+    FROM [User] WHERE email = @MAIL AND password = @PASS"; 
+    private const string add = "INSERT INTO [User] (email, password, UserType) VALUES (@MAIL, @PASS, @TYPE);";
     #endregion
 
     #region attributes 
@@ -47,9 +49,8 @@ public class Usuario
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public Usuario(int code, string email, string password, int user_type)
+    public Usuario(string email, string password, int user_type)
     {
-        _code = code;
         _email = email;
         _password = password;
         _user_tyoe = user_type;
@@ -60,19 +61,37 @@ public class Usuario
     #region instance methods
 
     /// <summary>
-    /// Add a new user
+    /// Validates user credentials
     /// </summary>
-    /// <returns></returns>
-    public bool Add()
+    /// <param name="email">User email</param>
+    /// <param name="password">User password</param>
+    /// <returns>Usuario if credentials are valid, otherwise null</returns>
+    public static Usuario? ValidateCredentials(string email, string password)
     {
-        //Add(this);
-        return true;
-    }
+        // Command
+        SqlCommand command = new SqlCommand(validateCredentials);
+        // Parameters
+        command.Parameters.AddWithValue("@MAIL", email);
+        command.Parameters.AddWithValue("@PASS", password);
+        // Execute query
+        DataTable result = SqlServerConnection.ExecuteQuery(command);
 
-    public bool Delete()
-    {
-        //Remove(this);
-        return true;
+        // Check if any row is returned
+        if (result.Rows.Count > 0)
+        {
+            DataRow row = result.Rows[0];
+            return new Usuario
+            {
+                Code = (int)row["user_code"],
+                Email = (string)row["user_email"],
+                Password = (string)row["user_password"],
+                UserType = (int)row["user_type"]
+            };
+        }
+        else
+        {
+            return null;
+        }
     }
 
     #endregion
@@ -129,7 +148,6 @@ public class Usuario
         // Command
         SqlCommand command = new SqlCommand(add);
         // Parameters
-        command.Parameters.AddWithValue("@ID", b.Code);
         command.Parameters.AddWithValue("@MAIL", b.Email);
         command.Parameters.AddWithValue("@PASS", b.Password);
         command.Parameters.AddWithValue("@TYPE", b.UserType);

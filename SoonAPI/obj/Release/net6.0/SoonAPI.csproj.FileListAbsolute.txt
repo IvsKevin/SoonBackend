@@ -37,3 +37,8 @@ C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\obj\Release\net6.0\refint\S
 C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\obj\Release\net6.0\SoonAPI.pdb
 C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\obj\Release\net6.0\SoonAPI.genruntimeconfig.cache
 C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\obj\Release\net6.0\ref\SoonAPI.dll
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\bin\Release\net6.0\publish\web.config
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\bin\Release\net6.0\publish\appsettings.Development.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\bin\Release\net6.0\publish\appsettings.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\bin\Release\net6.0\publish\SoonAPI.deps.json
+C:\Users\kevin\Documents\TrabajosUTT\SoonAPI\SoonAPI\bin\Release\net6.0\publish\SoonAPI.runtimeconfig.json

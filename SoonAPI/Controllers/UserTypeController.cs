@@ -33,10 +33,9 @@ namespace ConsoleAPI.Controllers
         public ActionResult Post([FromForm] PostUserType p)
         {
             // Check if data was posted
-            if (p.Code.HasValue &&
-                !String.IsNullOrEmpty(p.Description))
+            if (!String.IsNullOrEmpty(p.Description))
             {
-                if (UserType.Add(new UserType(p.Code.Value, p.Description)))
+                if (UserType.Add(new UserType(p.Description)))
                     return Ok(MessageResponse.Get(0, "Tipo de Usuario registrado correctamente"));
                 else
                     return Ok(MessageResponse.Get(2, "No se pudo registrar al tipo de usuario"));
