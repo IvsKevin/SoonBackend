@@ -56,6 +56,8 @@ using System.Data;
         b.Name = (string)r["station_name"];
         b.Location = (string)r["station_location"];
         b.Status = (bool)r["station_status"];
+        b.Latitude = r["station_latitude"] == DBNull.Value ? null : (decimal)r["station_latitude"];
+        b.Longitude = r["station_longitude"] == DBNull.Value ? null : (decimal)r["station_longitude"];
         return b;
     }
 
@@ -89,6 +91,7 @@ using System.Data;
         b.Code = (int)r["routes_code"];
         b.Name = (string)r["routes_name"];
         b.Status = (bool)r["routes_status"];
+        b.Map = r["routes_map"] == DBNull.Value ? null : (string)r["routes_map"];
         return b;
     }
 

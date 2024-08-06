@@ -44,6 +44,55 @@ public class TransactionController : ControllerBase
         else
             return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
     }
+
+    [HttpPut("{id}")]
+    public ActionResult Update(string id, [FromForm] PostTransaction updatedTransaction)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(updatedTransaction.Type) && updatedTransaction.Amount.HasValue && updatedTransaction.Card.HasValue)
+            {
+                Transaction transactionToUpdate = Transaction.Get(id);
+                transactionToUpdate.Type = updatedTransaction.Type;
+                transactionToUpdate.Amount = updatedTransaction.Amount.Value;
+                transactionToUpdate.Card = updatedTransaction.Card.Value;
+
+                if (Transaction.Update(transactionToUpdate))
+                    return Ok(MessageResponse.Get(0, "Transacción actualizada correctamente"));
+                else
+                    return Ok(MessageResponse.Get(2, "No se pudo actualizar la transacción"));
+            }
+            else
+            {
+                return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
+            }
+        }
+        catch (RecordNotFoundException e)
+        {
+            return NotFound(MessageResponse.Get(1, e.Message));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(string id)
+    {
+        try
+        {
+            if (Transaction.Delete(id))
+                return Ok(MessageResponse.Get(0, "Transacción eliminada correctamente"));
+            else
+                return NotFound(MessageResponse.Get(1, "Transacción no encontrada"));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
+    }
+
 }
 
 

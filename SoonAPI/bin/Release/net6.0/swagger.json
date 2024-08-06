@@ -209,6 +209,51 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Card"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Balance",
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Card"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Civil": {
@@ -398,6 +443,11 @@
             "in": "formData",
             "name": "Name",
             "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Map",
+            "type": "string"
           }
         ],
         "responses": {
@@ -409,6 +459,55 @@
     },
     "/api/Routes/{id}": {
       "get": {
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Routes"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Map",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "Routes"
         ],
@@ -517,8 +616,15 @@
           },
           {
             "in": "formData",
-            "name": "Status",
-            "type": "boolean"
+            "name": "Latitude",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "formData",
+            "name": "Longitude",
+            "type": "number",
+            "format": "double"
           }
         ],
         "responses": {
@@ -530,6 +636,67 @@
     },
     "/api/Station/{id}": {
       "get": {
+        "tags": [
+          "Station"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Station"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Location",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Latitude",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "formData",
+            "name": "Longitude",
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "Station"
         ],
@@ -610,6 +777,62 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Transaction"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Type",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Amount",
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "in": "formData",
+            "name": "Card",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/User": {
@@ -657,6 +880,61 @@
     },
     "/api/User/{id}": {
       "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Email",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Password",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "Type",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "User"
         ],

@@ -100,6 +100,32 @@ public class Card
             // Execute command
             return SqlServerConnection.ExecuteNonQuery(command);
     }
+
+    public static bool Update(Card b)
+    {
+        const string updateSql = @"UPDATE Card SET balance = @BALANCE WHERE code = @CODE;";
+        SqlCommand command = new SqlCommand(updateSql);
+        command.Parameters.AddWithValue("@BALANCE", b.Balance);
+        command.Parameters.AddWithValue("@CODE", b.Code);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+    public static bool Delete(string id)
+    {
+        const string deleteSql = "DELETE FROM Card WHERE code = @CODE;";
+
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        SqlCommand command = new SqlCommand(deleteSql);
+        command.Parameters.AddWithValue("@CODE", intId);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
     #endregion
 }
 

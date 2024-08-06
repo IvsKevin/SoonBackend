@@ -42,5 +42,52 @@ using Microsoft.AspNetCore.Mvc;
             else
                 return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
         }
+
+    [HttpPut("{id}")]
+    public ActionResult Update(string id, [FromForm] PostCard updatedCard)
+    {
+        try
+        {
+            if (updatedCard.Balance.HasValue)
+            {
+                Card cardToUpdate = Card.Get(id);
+                cardToUpdate.Balance = updatedCard.Balance.Value;
+
+                if (Card.Update(cardToUpdate))
+                    return Ok(MessageResponse.Get(0, "Tarjeta actualizada correctamente"));
+                else
+                    return Ok(MessageResponse.Get(2, "No se pudo actualizar la tarjeta"));
+            }
+            else
+            {
+                return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
+            }
+        }
+        catch (RecordNotFoundException e)
+        {
+            return NotFound(MessageResponse.Get(1, e.Message));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(string id)
+    {
+        try
+        {
+            if (Card.Delete(id))
+                return Ok(MessageResponse.Get(0, "Tarjeta eliminada correctamente"));
+            else
+                return NotFound(MessageResponse.Get(1, "Tarjeta no encontrada"));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
+    }
+
+}
 

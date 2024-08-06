@@ -147,6 +147,38 @@ public class Transaction
         // Execute command
         return SqlServerConnection.ExecuteNonQuery(command);
     }
+
+    public static bool Update(Transaction t)
+    {
+        const string updateSql = @"UPDATE Transactions 
+                               SET transactionType = @TYPE, 
+                                   amount = @AMOUNT, 
+                                   card = @CARD 
+                               WHERE code = @CODE;";
+        SqlCommand command = new SqlCommand(updateSql);
+        command.Parameters.AddWithValue("@TYPE", t.Type);
+        command.Parameters.AddWithValue("@AMOUNT", t.Amount);
+        command.Parameters.AddWithValue("@CARD", t.Card);
+        command.Parameters.AddWithValue("@CODE", t.Code);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+    public static bool Delete(string id)
+    {
+        const string deleteSql = "DELETE FROM Transactions WHERE code = @CODE;";
+
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        SqlCommand command = new SqlCommand(deleteSql);
+        command.Parameters.AddWithValue("@CODE", intId);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
     #endregion
 }
 

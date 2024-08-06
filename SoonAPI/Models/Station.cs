@@ -10,10 +10,13 @@ using System.Data.SqlClient;
 public class Station
 {
     #region statements
-    private const string select = "SELECT code AS station_code, name AS station_name, location AS station_location, status AS station_status FROM Stations ORDER BY station_code";
+    private const string select = @"SELECT code AS station_code, name AS station_name, 
+    location AS station_location, status AS station_status, latitude AS station_latitude,
+    longitude AS station_longitude
+    FROM Stations ORDER BY station_code";
     //private static string selecOne = "SELECT id AS brand_id, description AS brand_description FROM brands WHERE id = @ID ";
-    private const string add = @"INSERT INTO Stations (name, location, status)
-        VALUES (@NAME, @LOCATION, @STATUS);";
+    private const string add = @"INSERT INTO Stations (name, location, status, latitude, longitude)
+        VALUES (@NAME, @LOCATION, @STATUS, @LANT, @LONG);";
     #endregion
 
     #region attributes 
@@ -21,6 +24,8 @@ public class Station
     private string _name;
     private string _location;
     private bool _status;
+    private decimal? _latitude;
+    private decimal? _longitude;
     #endregion
 
     #region properties
@@ -28,6 +33,8 @@ public class Station
     public string Name { get => _name; set => _name = value; }
     public string Location { get => _location; set => _location = value; }
     public bool Status { get => _status; set => _status = value; }
+    public decimal? Latitude { get => _latitude; set => _latitude = value; }
+    public decimal? Longitude { get => _longitude; set => _longitude = value; }
     #endregion
 
     #region constructors
@@ -41,6 +48,8 @@ public class Station
         _name = "";
         _location = "";
         _status = true;
+        _latitude = 0;
+        _longitude = 0;
     }
 
     /// <summary>
@@ -48,11 +57,13 @@ public class Station
     /// </summary>
     /// <param name="id">Brand id</param>
     /// <param name="description">Brand description</param>
-    public Station(string name, string location, bool status)
+    public Station(string name, string location, bool status, decimal latitude, decimal longitude)
     {
         _name = name;
         _location = location;
         _status = status;
+        _latitude = latitude;
+        _longitude = longitude;
     }
 
     #endregion
@@ -131,7 +142,37 @@ public class Station
         command.Parameters.AddWithValue("@NAME", b.Name);
         command.Parameters.AddWithValue("@LOCATION", b.Location);
         command.Parameters.AddWithValue("@STATUS", b.Status);
+        command.Parameters.AddWithValue("@LANT", b.Latitude);
+        command.Parameters.AddWithValue("@LONG", b.Longitude);
         // Execute command
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+    public static bool Update(Station b)
+    {
+        const string updateSql = @"UPDATE Stations SET name = @NAME, location = @LOCATION, latitude = @LANT, longitude = @LONG WHERE code = @CODE;";
+        SqlCommand command = new SqlCommand(updateSql);
+        command.Parameters.AddWithValue("@NAME", b.Name);
+        command.Parameters.AddWithValue("@LOCATION", b.Location);
+        command.Parameters.AddWithValue("@LANT", b.Latitude);
+        command.Parameters.AddWithValue("@LONG", b.Longitude);
+        command.Parameters.AddWithValue("@CODE", b.Code);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+    public static bool Delete(string id)
+    {
+        const string deleteSql = "DELETE FROM Stations WHERE code = @CODE;";
+
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        SqlCommand command = new SqlCommand(deleteSql);
+        command.Parameters.AddWithValue("@CODE", intId);
+
         return SqlServerConnection.ExecuteNonQuery(command);
     }
 

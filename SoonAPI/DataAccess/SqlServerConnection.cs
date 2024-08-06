@@ -6,22 +6,22 @@ internal class SqlServerConnection
 {
     #region variables
     // Connection String
-    private const string cs = @"
-        Server=tcp:soon-api-server.database.windows.net,1433;
-        Initial Catalog=SoonDB2;
-        Persist Security Info=False;
-        User ID=soon_adminitrador1;
-        Password=administrador09_;
-        MultipleActiveResultSets=False;
-        Encrypt=True;
-        TrustServerCertificate=False;
-        Connection Timeout=30;
-    ";
-
     // private const string cs = @"
-    //     Data Source = IVSKEVIN\SQLEXPRESS;
-    //     Initial Catalog = Soon;
-    //     Integrated Security = true;";
+    //     Server=tcp:soon-api-server.database.windows.net,1433;
+    //     Initial Catalog=SoonDB2;
+    //     Persist Security Info=False;
+    //     User ID=soon_adminitrador1;
+    //     Password=administrador09_;
+    //     MultipleActiveResultSets=False;
+    //     Encrypt=True;
+    //     TrustServerCertificate=False;
+    //     Connection Timeout=30;
+    // "; 
+
+      private const string cs = @"
+         Data Source = IVSKEVIN\SQLEXPRESS;
+         Initial Catalog = Soon;
+         Integrated Security = true;"; 
 
     // Connection
     private static SqlConnection? connection;

@@ -154,6 +154,35 @@ public class Usuario
         // Execute command
         return SqlServerConnection.ExecuteNonQuery(command);
     }
+
+    public static bool Update(Usuario u)
+    {
+        const string updateSql = @"UPDATE [User] SET email = @MAIL, password = @PASS, UserType = @TYPE WHERE code = @CODE;";
+        SqlCommand command = new SqlCommand(updateSql);
+        command.Parameters.AddWithValue("@MAIL", u.Email);
+        command.Parameters.AddWithValue("@PASS", u.Password);
+        command.Parameters.AddWithValue("@TYPE", u.UserType);
+        command.Parameters.AddWithValue("@CODE", u.Code);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+    public static bool Delete(string id)
+    {
+        const string deleteSql = "DELETE FROM [User] WHERE code = @CODE;";
+
+        if (!int.TryParse(id, out int intId))
+        {
+            throw new ArgumentException2("El id proporcionado no es un número válido.");
+        }
+
+        SqlCommand command = new SqlCommand(deleteSql);
+        command.Parameters.AddWithValue("@CODE", intId);
+
+        return SqlServerConnection.ExecuteNonQuery(command);
+    }
+
+
     #endregion
 }
 

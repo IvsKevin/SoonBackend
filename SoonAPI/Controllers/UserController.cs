@@ -72,6 +72,56 @@ public class UserController : ControllerBase
         else
             return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
     }
+
+    [HttpPut("{id}")]
+    public ActionResult Update(string id, [FromForm] PostUser updatedUser)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(updatedUser.Email) && !string.IsNullOrEmpty(updatedUser.Password) && updatedUser.Type.HasValue)
+            {
+                Usuario userToUpdate = Usuario.Get(id);
+                userToUpdate.Email = updatedUser.Email;
+                userToUpdate.Password = updatedUser.Password;
+                userToUpdate.UserType = updatedUser.Type.Value;
+
+                if (Usuario.Update(userToUpdate))
+                    return Ok(MessageResponse.Get(0, "Usuario actualizado correctamente"));
+                else
+                    return Ok(MessageResponse.Get(2, "No se pudo actualizar el usuario"));
+            }
+            else
+            {
+                return Ok(MessageResponse.Get(1, "Datos del formulario incompletos"));
+            }
+        }
+        catch (RecordNotFoundException e)
+        {
+            return NotFound(MessageResponse.Get(1, e.Message));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(string id)
+    {
+        try
+        {
+            if (Usuario.Delete(id))
+                return Ok(MessageResponse.Get(0, "Usuario eliminado correctamente"));
+            else
+                return NotFound(MessageResponse.Get(1, "Usuario no encontrado"));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, MessageResponse.Get(1, e.Message));
+        }
+    }
+
+
 }
 
 
